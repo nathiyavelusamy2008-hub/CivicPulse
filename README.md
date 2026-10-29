@@ -1,233 +1,113 @@
-# ✳ CivicPulse — Community Impact Intelligence Platform
+# CivicPulse — Community Impact Intelligence Platform
 
-### Turning Community Problems into Prioritized Action
+**Turn community reports into prioritized, trackable action.**
 
-CivicPulse is a full-stack civic technology platform designed to help communities report local issues, identify urgent problems, and track their resolution. From potholes and water leakage to waste management and broken streetlights, CivicPulse transforms community reports into actionable insights using transparent priority scoring and duplicate-report detection.
+CivicPulse is a full-stack civic issue reporting and response platform. Residents can report local problems such as water leaks, garbage overflow, potholes, broken streetlights, and unsafe public spaces. The backend calculates a transparent priority score, flags possible duplicate reports, and gives responders a dashboard to track progress.
 
-Our mission is to build more responsive, transparent, and accountable communities through technology.
+## Why it is different
+- **Transparent urgency scoring:** combines severity, public-safety risk, affected people, and report freshness.
+- **Duplicate awareness:** identifies reports with similar categories and nearby locations to reduce repeated work.
+- **Closed-loop accountability:** every report has a status and timeline-friendly tracking.
+- **Impact dashboard:** shows open issues, high-priority cases, resolved reports, and category distribution.
+- **Demo-ready:** comes with sample cases and a local SQLite database; no API key is required.
 
-## 🚨 Problem Statement
+## Features
+- Submit a civic issue with category, location, description, and estimated number of people affected.
+- Browse, search, and filter reports.
+- See priority score and the reason behind it.
+- Update report status from the responder controls.
+- View live dashboard metrics.
+- Persist reports in SQLite.
 
-Communities frequently face local infrastructure and public-service issues, including:
+## Tech stack
+- Frontend: HTML, CSS, vanilla JavaScript
+- Backend: Python, FastAPI
+- Database: SQLite
+- API documentation: FastAPI Swagger UI
 
-- Delayed identification and resolution of civic problems.
-- Difficulty prioritizing issues based on urgency and public impact.
-- Repeated reports of the same issue.
-- Limited visibility into the progress of reported problems.
-- Lack of centralized information for tracking community improvement.
+## Run locally
 
-These challenges can lead to wasted resources, delayed responses, and reduced public trust.
-
-## 💡 Our Solution
-
-CivicPulse provides a centralized platform where users can report civic issues and responders can prioritize and manage them efficiently.
-
-The system calculates an explainable priority score using factors such as issue category, severity, estimated affected population, and report age. It also flags potentially similar reports and provides a dashboard to monitor issue status and resolution progress.
-
-## ✨ Key Features
-
-### 📊 1. Community Impact Dashboard
-- View total submitted reports.
-- Monitor unresolved issues.
-- Track high-priority reports.
-- View the overall resolution rate.
-
-### 📝 2. Civic Issue Reporting
-- Submit issues with a title, category, location, and description.
-- Select severity levels from Low to Critical.
-- Enter an estimate of the number of people affected.
-- Store reports in a persistent database.
-
-### 🧠 3. Explainable Priority Scoring
-- Calculate a priority score out of 100.
-- Consider category risk, severity, affected people, and report age.
-- Display the reasons contributing to each score.
-- Help responders organize their work more effectively.
-
-### 🔍 4. Duplicate-Report Detection
-- Identify potentially similar reports.
-- Compare issue categories, locations, and descriptions.
-- Help reduce duplicate work and improve coordination.
-
-### 🔄 5. Issue Status Tracking
-Track every report through three statuses:
-
-- **Reported** — The issue has been submitted.
-- **In Progress** — Work on the issue has started.
-- **Resolved** — The issue has been marked as resolved.
-
-### 🔎 6. Search and Filtering
-- Search by issue title, location, description, or category.
-- Filter reports by category, priority, and status.
-- Find relevant reports quickly.
-
-### 🗄️ 7. Database Integration
-- Store civic reports using SQLite.
-- Retrieve reports through backend API endpoints.
-- Preserve submitted data across application restarts.
-
-## ⚙️ Technology Stack
-
-| Component | Technology |
-|---|---|
-| Frontend | HTML5, CSS3, JavaScript |
-| Backend | Python, FastAPI |
-| Database | SQLite |
-| API Testing | FastAPI Swagger UI |
-| Development Server | Uvicorn |
-
-## 🏗️ System Architecture
-
-```text
-       Community Members
-               |
-               v
-      Frontend Web Interface
-         HTML / CSS / JS
-               |
-               v
-          FastAPI Backend
-               |
-       +-------+--------+
-       |                |
-       v                v
- Priority Scoring   Duplicate Detection
-       |                |
-       +-------+--------+
-               |
-               v
-         SQLite Database
-               |
-               v
-       Impact Dashboard
-    Reports, Priorities, Status
-```
-
-## 🔄 Application Workflow
-
-1. A community member submits a civic issue.
-2. The backend validates the submitted information.
-3. The issue is stored in the SQLite database.
-4. A priority score is calculated using the configured scoring rules.
-5. Similar reports are checked and potential duplicates are flagged.
-6. The dashboard displays the report and its priority.
-7. Responders update the issue status as work progresses.
-8. Dashboard statistics refresh to reflect the latest information.
-
-## 🛠️ Installation and Setup
-
-### Prerequisites
-
+### 1. Requirements
 - Python 3.10 or newer
-- Visual Studio Code or another code editor
-- A modern web browser
 
-### Step 1: Clone the repository
-
-```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd CivicPulse-Community-Impact-Platform
-```
-
-Replace the placeholder with your actual GitHub repository URL.
-
-### Step 2: Create a virtual environment
+### 2. Install dependencies
+Open a terminal in the project folder:
 
 ```bash
 python -m venv .venv
 ```
 
-### Step 3: Activate the environment
-
-**Windows:**
-
+Windows:
 ```bash
 .venv\Scripts\activate
 ```
 
-**macOS / Linux:**
-
+macOS/Linux:
 ```bash
 source .venv/bin/activate
 ```
 
-### Step 4: Install dependencies
-
+Then:
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 5: Start the application
-
-Run this command from the project root directory:
-
+### 3. Start the application
 ```bash
 uvicorn backend.main:app --reload
 ```
 
-### Step 6: Open the application
+Open **http://127.0.0.1:8000** in your browser.
 
-- **Web application:** http://127.0.0.1:8000
-- **API documentation:** http://127.0.0.1:8000/docs
-- **Health check:** http://127.0.0.1:8000/api/health
+API docs: **http://127.0.0.1:8000/docs**
 
-The application initializes its SQLite database and adds sample reports when the database is empty.
+## Project structure
+```text
+CivicPulse-Community-Impact-Platform/
+├── backend/
+│   └── main.py
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+├── requirements.txt
+├── .env.example
+└── README.md
+```
 
-## 🔌 API Endpoints
-
-| Method | Endpoint | Description |
+## API endpoints
+| Method | Endpoint | Purpose |
 |---|---|---|
-| GET | `/api/health` | Check backend availability |
-| GET | `/api/issues` | Retrieve and filter reports |
-| POST | `/api/issues` | Submit a new report |
-| PATCH | `/api/issues/{id}` | Update report status |
-| GET | `/api/analytics` | Retrieve dashboard statistics |
+| GET | `/api/issues` | List reports, with optional filters |
+| POST | `/api/issues` | Create a report |
+| PATCH | `/api/issues/{id}` | Update status |
+| GET | `/api/analytics` | Dashboard metrics |
+| GET | `/api/health` | Service health |
 
-## 🌍 Real-World Applications
+## Priority score
+The score is a **demo heuristic, not an official emergency assessment**. It considers category risk, user-selected severity, estimated affected people, and report age. The interface displays the main reason so the score is explainable.
 
-CivicPulse can serve as a prototype for:
+## Demo walkthrough
+1. Open the dashboard and review the sample reports.
+2. Submit a report for a water leak or pothole.
+3. Review the calculated score and possible duplicate warning.
+4. Filter to high-priority issues.
+5. Change a report from **Reported** to **In Progress** or **Resolved**.
+6. Watch the dashboard metrics update.
 
-- Municipal complaint management.
-- Community infrastructure monitoring.
-- Public-space maintenance.
-- Waste management coordination.
-- Local road and streetlight issue tracking.
-- Community-driven urban improvement initiatives.
+## Important limitations
+- The included reports are illustrative demo data, not live government data.
+- Location is entered as text; map geocoding and GPS are not integrated.
+- The priority score supports triage but must not replace human review, official emergency channels, or professional judgement.
+- Do not submit personal, confidential, or emergency-sensitive information.
 
-## 🚀 Future Enhancements
+## Future enhancements
+- Map-based issue visualization and GPS capture
+- Image upload with privacy safeguards
+- Verified department accounts and role-based access
+- SMS/email notifications
+- Multilingual reporting
+- Optional AI model for report classification, with human review
 
-- Interactive maps with GPS-based issue locations.
-- Image uploads for visual evidence.
-- AI-assisted classification of issue descriptions and images.
-- Multilingual reporting for regional communities.
-- Role-based access for administrators and response teams.
-- Notifications when issue statuses change.
-- Integration with verified municipal data and service workflows.
-- Analytics to identify recurring problem areas.
-
-## 🔐 Limitations and Responsible Use
-
-- The included sample reports are illustrative, not live municipal records.
-- Priority scores use a configurable rule-based heuristic and are not validated emergency-risk assessments.
-- Duplicate detection identifies possible matches and does not guarantee that two reports describe the same incident.
-- The current prototype does not include authenticated user accounts or verified department workflows.
-- Critical emergencies should always be reported through official emergency channels.
-
-## 🎯 Project Objectives
-
-- Improve visibility into local civic problems.
-- Support transparent and explainable issue prioritization.
-- Reduce duplicate reporting and unnecessary effort.
-- Make issue status and progress easier to track.
-- Encourage community participation and accountability.
-
-## 🌟 Our Vision
-
-We envision communities where local problems are visible, priorities are understandable, and progress can be tracked.
-
-**CivicPulse — Every Report Matters. Every Action Counts.**
-
----
-
-*Developed as a civic technology prototype demonstrating full-stack web development, data management, explainable prioritization, and community-focused problem-solving.*
-
+## Vision
+**A community where no local issue disappears into silence.**

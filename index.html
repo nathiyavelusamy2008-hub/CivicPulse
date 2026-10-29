@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>CivicPulse — Community Impact Intelligence</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">✳</span><span>Civic<span class="brand-light">Pulse</span><small>COMMUNITY INTELLIGENCE</small></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#overview"><span>▦</span> Overview</a>
+      <a class="nav-item" href="#reports"><span>◉</span> Issue reports</a>
+      <a class="nav-item" href="#report-form"><span>＋</span> Report an issue</a>
+      <div class="sidebar-bottom">
+        <div class="pulse-card"><span class="pulse-dot"></span><b>Local demo mode</b><p>Connected to your local CivicPulse database.</p></div>
+        <div class="profile"><div class="avatar">CP</div><div><b>Community Desk</b><small>Response workspace</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><div class="eyebrow">COMMUNITY RESPONSE CENTER</div><h1>Good work starts with <span>visibility.</span></h1><p class="subheading">Turn local reports into clear priorities and measurable action.</p></div>
+        <a class="primary-button top-action" href="#report-form">＋ Report an issue</a>
+      </header>
+
+      <section id="overview">
+        <div class="section-heading"><div><h2>Community overview</h2><p>A live snapshot of the reports in your workspace.</p></div><span class="live-chip"><i></i> LIVE FROM LOCAL DATABASE</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total reports</span><span class="stat-icon violet">▤</span></div><div class="stat-value" id="stat-total">—</div><div class="stat-foot">All submitted community issues</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Need attention</span><span class="stat-icon orange">⚑</span></div><div class="stat-value" id="stat-open">—</div><div class="stat-foot">Not yet resolved</div></article>
+          <article class="stat-card"><div class="stat-top"><span>High priority</span><span class="stat-icon red">↗</span></div><div class="stat-value" id="stat-high">—</div><div class="stat-foot">High or critical and unresolved</div></article>
+          <article class="stat-card"><div class="stat-top"><span>Resolution rate</span><span class="stat-icon green">✓</span></div><div class="stat-value" id="stat-rate">—<small>%</small></div><div class="stat-foot">Reports marked resolved</div></article>
+        </div>
+      </section>
+
+      <section class="priority-banner">
+        <div class="banner-symbol">✳</div><div><div class="banner-kicker">THE CIVICPULSE DIFFERENCE</div><h3>Prioritize by impact, not just by arrival time.</h3><p>Each report receives an explainable demo priority score based on category risk, severity, affected people, and age.</p></div><a href="#reports" class="banner-link">Review priorities <span>→</span></a>
+      </section>
+
+      <section class="report-layout">
+        <div class="reports-panel" id="reports">
+          <div class="section-heading report-heading"><div><h2>Issue intelligence</h2><p>Search, filter, and manage incoming community reports.</p></div><span class="count-chip" id="visible-count">0 reports</span></div>
+          <div class="filters">
+            <label class="search-box"><span>⌕</span><input id="search" type="search" placeholder="Search reports or locations…"></label>
+            <select id="category-filter" aria-label="Filter by category"><option>All Categories</option><option>Water & Sanitation</option><option>Roads & Potholes</option><option>Waste Management</option><option>Street Lighting</option><option>Public Safety</option><option>Parks & Public Spaces</option><option>Other</option></select>
+            <select id="priority-filter" aria-label="Filter by priority"><option>All Priorities</option><option>Critical</option><option>High</option><option>Medium</option><option>Low</option></select>
+            <select id="status-filter" aria-label="Filter by status"><option>All Statuses</option><option>Reported</option><option>In Progress</option><option>Resolved</option></select>
+          </div>
+          <div id="issues-list" class="issues-list"><div class="loading">Loading community reports…</div></div>
+        </div>
+
+        <aside class="form-panel" id="report-form">
+          <div class="form-head"><div class="form-icon">＋</div><div><h2>Raise a report</h2><p>Give your community a voice.</p></div></div>
+          <form id="issue-form">
+            <label>Issue title<input name="title" required minlength="4" maxlength="100" placeholder="e.g. Water leak near bus stop"></label>
+            <label>Issue category<select name="category" required><option value="">Choose a category</option><option>Water & Sanitation</option><option>Roads & Potholes</option><option>Waste Management</option><option>Street Lighting</option><option>Public Safety</option><option>Parks & Public Spaces</option><option>Other</option></select></label>
+            <label>Location or landmark<input name="location" required minlength="3" maxlength="120" placeholder="Street, landmark, or area"></label>
+            <label>What is happening?<textarea name="description" required minlength="10" maxlength="1000" rows="3" placeholder="Describe the issue and who it affects…"></textarea></label>
+            <div class="form-row">
+              <label>Severity<select name="severity" required><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></label>
+              <label>People affected<input name="affected_people" type="number" min="1" max="100000" value="10" required></label>
+            </div>
+            <div class="privacy-note"><span>ⓘ</span> Avoid entering personal or confidential information.</div>
+            <button class="primary-button submit-button" type="submit">Submit community report <span>→</span></button>
+            <div id="form-message" role="status" aria-live="polite"></div>
+          </form>
+        </aside>
+      </section>
+      <footer><span>✳ CivicPulse</span><span>Community-first · Transparent · Action-oriented</span><span>Demo build v1.0</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
